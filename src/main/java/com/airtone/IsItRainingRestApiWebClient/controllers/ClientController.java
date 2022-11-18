@@ -2,13 +2,16 @@ package com.airtone.IsItRainingRestApiWebClient.controllers;
 
 import com.airtone.IsItRainingRestApiWebClient.DataSending;
 import com.airtone.IsItRainingRestApiWebClient.Service;
+import com.airtone.IsItRainingRestApiWebClient.model.Measurement;
 import com.airtone.IsItRainingRestApiWebClient.model.Sensor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/client")
@@ -33,7 +36,22 @@ public class ClientController {
         if(bindingResult.hasErrors())
             return "/sensor/new";
         service.newSensorRegistration(sensor.getName());
-        System.out.println("PM test");
         return "sensor/new";
+    }
+    @GetMapping("/measurement/new")
+    public String addMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model, @ModelAttribute("measurement") Measurement measurement, BindingResult bindingResult) {
+        model.addAttribute("allSensors", service.showAllSensors());
+        model.addAttribute("values", service.values());
+        return "measurement/new";
+    }
+    @PostMapping("/measurement")
+    public String createMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model, @ModelAttribute("measurement") @Valid Measurement measurement, BindingResult bindingResult) {
+//        if(dataSending.sensorCheck(measurement.getSensor()) == false)
+//            bindingResult.rejectValue("sensor", "","A sensor with this name is not registered");
+
+        if(bindingResult.hasErrors())
+            return "measurement/new";
+        service.newMeasurementAdding(measurement.getValue(), measurement.getRaining(), sensor.getName());
+        return "redirect:/client/measurement/new";
     }
 }

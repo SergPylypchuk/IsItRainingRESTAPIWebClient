@@ -1,8 +1,8 @@
-package com.airtone.IsItRainingRestApiWebClient;
+package com.airtone.IsItRainingRestApiWebClient.model;
 
 import java.util.List;
 
-public class FindAllResponse {
+public class AllMeasurements {
     private List<Measurement> measurement;
 
     public List<Measurement> getMeasurement() {

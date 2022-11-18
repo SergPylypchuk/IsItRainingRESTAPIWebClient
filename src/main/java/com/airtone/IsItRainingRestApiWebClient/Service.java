@@ -1,11 +1,13 @@
 package com.airtone.IsItRainingRestApiWebClient;
 
+import com.airtone.IsItRainingRestApiWebClient.model.AllMeasurements;
+import com.airtone.IsItRainingRestApiWebClient.model.AllSensors;
+import com.airtone.IsItRainingRestApiWebClient.model.Measurement;
+import com.airtone.IsItRainingRestApiWebClient.model.Sensor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @Component
 public class Service {
@@ -74,11 +76,22 @@ public class Service {
 
     public void showAllMeasurements() {
         String showAllMeasurementsUrl = "http://localhost:8080/measurements";
-        FindAllResponse showAllMeasurementsResponse = restTemplate.getForObject(showAllMeasurementsUrl, FindAllResponse.class);
+        AllMeasurements showAllMeasurementsResponse = restTemplate.getForObject(showAllMeasurementsUrl, AllMeasurements.class);
         for(Measurement m : showAllMeasurementsResponse.getMeasurement()) {
             System.out.println("measurement: raining: " + m.getRaining()
                     + " temperature: " + m.getValue() + " sensor: " + m.getSensor());
         }
+    }
+
+    /////////////////////////// Show All Sensors /////////////////////////////
+
+    public List<Sensor> showAllSensors() {
+        String showAllSensorsUrl = "http://localhost:8080/sensors";
+        AllSensors showAllSensorsResponse = restTemplate.getForObject(showAllSensorsUrl, AllSensors.class);
+        for(Sensor m : showAllSensorsResponse.getSensor()) {
+            System.out.println("measurement: name: " + m);
+        }
+        return showAllSensorsResponse.getSensor();
     }
 
 
@@ -96,6 +109,15 @@ public class Service {
     public void clearAllData() {
         String clearAllDataUrl = "http://localhost:8080/sensors/clear";
         restTemplate.delete(clearAllDataUrl, String.class);
+    }
 
+    ///////////////////////////  Temperature values ///////////////////////////////
+    public List<String> values() {
+        List<String> values = new ArrayList<>();
+        for(int i = -35; i<41; i++) {
+
+            values.add(Integer.toString(i));
+        }
+        return values;
     }
 }

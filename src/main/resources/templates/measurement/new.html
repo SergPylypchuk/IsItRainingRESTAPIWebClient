@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add measurement</title>
+</head>
+<body>
+<form th:method="POST" th:action="@{/client/measurement}" th:object="${measurement}">
+<!--    <label for="value">Temperature</label>-->
+<!--    <input type="text" th:field="*{value}" id="value"/>-->
+<!--    <div style="color: darkred" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
+<!--    <br/>-->
+
+    <label for="value">Temperature</label>
+    <select th:object="${measurement}" th:field="*{value}" id="value">
+        <option th:each="v : ${values}" th:value="${v}"
+                th:text="${v}"></option>
+    </select>
+
+
+<!--    <label for="raining">Raining</label>-->
+<!--    <input type="text" th:field="*{raining}" id="raining"/>-->
+<!--    <div color="red" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
+<!--    <br/>-->
+
+    <p>It is raining?</p>
+    <label for="rainingTrue">Yes</label>
+    <input type="radio" th:field="*{raining}" id="rainingTrue" name="raining" value="true"/>
+
+    <label for="rainingFalse">No</label>
+    <input type="radio" th:field="*{raining}" id="rainingFalse" name="raining" value="false"/>
+
+    <br/>
+
+    <label for="sensor">Sensor</label>
+    <select th:object="${sensor}" th:field="*{name}" id="sensor">
+        <option th:each="sensor : ${allSensors}" th:value="${sensor.getName()}"
+                th:text="${sensor.getName()}"></option>
+    </select>
+    <br/>
+    <input type="submit" value="Create"/>
+</form>
+
+</body>
+</html>
