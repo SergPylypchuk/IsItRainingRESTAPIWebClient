@@ -74,13 +74,14 @@ public class Service {
 
     /////////////////////////// Show All Measurements /////////////////////////////
 
-    public void showAllMeasurements() {
+    public List<Measurement> showAllMeasurements() {
         String showAllMeasurementsUrl = "http://localhost:8080/measurements";
         AllMeasurements showAllMeasurementsResponse = restTemplate.getForObject(showAllMeasurementsUrl, AllMeasurements.class);
         for(Measurement m : showAllMeasurementsResponse.getMeasurement()) {
             System.out.println("measurement: raining: " + m.getRaining()
                     + " temperature: " + m.getValue() + " sensor: " + m.getSensor());
         }
+        return showAllMeasurementsResponse.getMeasurement();
     }
 
     /////////////////////////// Show All Sensors /////////////////////////////
@@ -114,7 +115,7 @@ public class Service {
     ///////////////////////////  Temperature values ///////////////////////////////
     public List<String> values() {
         List<String> values = new ArrayList<>();
-        for(int i = -35; i<41; i++) {
+        for(int i = 40; i>(-36); i--) {
 
             values.add(Integer.toString(i));
         }

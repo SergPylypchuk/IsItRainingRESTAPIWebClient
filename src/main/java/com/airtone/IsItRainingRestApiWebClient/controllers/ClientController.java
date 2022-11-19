@@ -45,7 +45,9 @@ public class ClientController {
         return "measurement/new";
     }
     @PostMapping("/measurement")
-    public String createMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model, @ModelAttribute("measurement") @Valid Measurement measurement, BindingResult bindingResult) {
+    public String createMeasurement(@ModelAttribute("sensor") Sensor sensor, @ModelAttribute("measurement") @Valid Measurement measurement, BindingResult bindingResult) {
+
+        // Checking the sensor for manual data entry
 //        if(dataSending.sensorCheck(measurement.getSensor()) == false)
 //            bindingResult.rejectValue("sensor", "","A sensor with this name is not registered");
 
@@ -54,4 +56,47 @@ public class ClientController {
         service.newMeasurementAdding(measurement.getValue(), measurement.getRaining(), sensor.getName());
         return "redirect:/client/measurement/new";
     }
+
+    @GetMapping("/sensor/batch/new")
+    public String batchSensorGen() {
+        return "sensor/batch";
+    }
+    @PostMapping("/sensor/batch")
+    public String batchSensorCreate() {
+        service.clearAllData();
+        service.batchSensorRegistration();
+        return "measurement/batch";
+    }
+
+    @GetMapping("/measurement/batch/new")
+    public String batchMeasurementGen() {
+        return "measurement/batch";
+    }
+    @PostMapping("/measurement/batch")
+    public String batchMeasurementCreate() {
+        service.batchMeasurementSending();
+        return "measurement/batch";
+    }
+
+    @GetMapping("/measurement/show")
+    public String ShowAllMeasurements(Model model) {
+        model.addAttribute("allMeasurements", service.showAllMeasurements());
+        model.addAttribute("allMeasToStr",service.showAllMeasurements().toString());
+        return "measurement/show";
+    }
+
+    @GetMapping("/measurement/rainydays")
+    public String rainyDaysCounter(Model model) {
+        model.addAttribute("rainyDays", service.showAllRainyDays());
+        return "measurement/rainydays";
+    }
+
+    @PostMapping("/clear")
+    public String clearData() {
+        service.clearAllData();
+        return "index";
+    }
+
+
+
 }

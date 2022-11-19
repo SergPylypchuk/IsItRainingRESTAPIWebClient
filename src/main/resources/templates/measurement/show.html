@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Show all measurements</title>
+</head>
+<body>
+
+
+<table>
+    <caption>All measurements</caption>
+    <thead>
+    <tr>
+        <th>Sensor</th>
+        <th>Temperature</th>
+        <th>Raining</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="measurement : ${allMeasurements}">
+        <td class="align-middle" th:text="${measurement.getSensor()}"></td>
+        <td class="align-middle" th:text="${measurement.getValue()}"></td>
+        <td class="align-middle" th:text="${measurement.getRaining()}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Batch measurement generation</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/client/measurement/batch}" >
+    <p>Generate 1000 testing measurements</p>
+    <input type="submit" value="Create"/>
+</form>
+
+
+
+
+
+<form th:method="GET" th:action="@{/client/measurement/show}" >
+    <p>Show all measurements</p>
+    <input type="submit" value="Show"/>
+</form>
+
+<form th:method="GET" th:action="@{/client/measurement/rainydays}" >
+    <p>Show the number of rainy days</p>
+    <input type="submit" value="Show"/>
+</form>
+
+<form th:method="Post" th:action="@{/client/clear}" >
+    <p>Clear Data</p>
+    <input type="submit" value="Clear"/>
+</form>
+
+</body>
+</html>
