@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Sensor batch generation</title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<form th:method="POST" th:action="@{/client/sensor/batch}" >
+    <div class="common">
+        <div class="content">
+            <form th:method="POST" th:action="@{/client/sensor/batch}" >
 
-    <p>Generate 1000 testing sensors</p>
-    <input type="submit" value="Create"/>
-</form>
+                <h1>Generate 1000 testing sensors</h1>
+                <div class="sbmt">
+                    <input type="submit" value="Generate"/>
+                </div>
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -2,50 +2,64 @@
 <html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add measurement</title>
+    <title>Add measurements</title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<form th:method="POST" th:action="@{/client/measurement}" th:object="${measurement}">
-<!--    <label for="value">Temperature</label>-->
-<!--    <input type="text" th:field="*{value}" id="value"/>-->
-<!--    <div style="color: darkred" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
-<!--    <br/>-->
+    <div class="common">
+        <div class="content">
+            <h1>Add measurements</h1>
+            <form th:method="POST" th:action="@{/client/measurement}" th:object="${measurement}">
+            <!--    <label for="value">Temperature</label>-->
+            <!--    <input type="text" th:field="*{value}" id="value"/>-->
+            <!--    <div style="color: darkred" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
+            <!--    <br/>-->
 
-    <label for="value">Temperature</label>
-    <select th:object="${measurement}" th:field="*{value}" id="value">
-        <option th:each="v : ${values}" th:value="${v}"
-                th:text="${v}"></option>
-    </select>
-
-
-<!--    <label for="raining">Raining</label>-->
-<!--    <input type="text" th:field="*{raining}" id="raining"/>-->
-<!--    <div color="red" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
-<!--    <br/>-->
-
-    <p>It is raining?</p>
-    <label for="rainingTrue">Yes</label>
-    <input type="radio" th:field="*{raining}" id="rainingTrue" name="raining" value="true"/>
-
-    <label for="rainingFalse">No</label>
-    <input type="radio" th:field="*{raining}" id="rainingFalse" name="raining" value="false"/>
-
-    <br/>
-
-    <label for="sensor">Sensor</label>
-    <select th:object="${sensor}" th:field="*{name}" id="sensor">
-        <option th:each="sensor : ${allSensors}" th:value="${sensor.getName()}"
-                th:text="${sensor.getName()}"></option>
-    </select>
-    <br/>
-    <input type="submit" value="Create"/>
-</form>
+                <label for="value">Temperature:</label>
+                <br/>
+                <select th:object="${measurement}" th:field="*{value}" id="value">
+                    <option th:each="v : ${values}" th:value="${v}"
+                            th:text="${v}"></option>
+                </select>
 
 
-<form th:method="POST" th:action="@{/client/measurement/show}" >
-    <p>Show all measurements</p>
-    <input type="submit" value="Show"/>
-</form>
+            <!--    <label for="raining">Raining</label>-->
+            <!--    <input type="text" th:field="*{raining}" id="raining"/>-->
+            <!--    <div color="red" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
+            <!--    <br/>-->
 
+                <div class="p_left">
+                    <div class="iir">Is it raining?</div>
+                <label for="rainingTrue">Yes</label>
+                <input type="radio" th:field="*{raining}" id="rainingTrue" name="raining" value="true"/>
+
+                <label for="rainingFalse">No</label>
+                <input type="radio" th:field="*{raining}" id="rainingFalse" name="raining" value="false"/>
+                </div>
+
+                <br/>
+
+                <label for="sensor">Sensor:</label>
+                <br/>
+                <select th:object="${sensor}" th:field="*{name}" id="sensor">
+                    <option th:each="sensor : ${allSensors}" th:value="${sensor.getName()}"
+                            th:text="${sensor.getName()}"></option>
+                </select>
+                <br/>
+                <div class="sbmt">
+                    <input type="submit" value="Add"/>
+                </div>
+            </form>
+
+
+            <form th:method="POST" th:action="@{/client/measurement/show}" >
+                <p>Show all measurements</p>
+                <div class="sbmt">
+                    <input type="submit" value="All measurements"/>
+                </div>
+            </form>
+
+        </div>
+    </div>
 </body>
 </html>

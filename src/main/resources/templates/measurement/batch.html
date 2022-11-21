@@ -3,32 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <title>Batch measurement generation</title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
+    <div class="common">
+        <div class="content">
 
-<form th:method="POST" th:action="@{/client/measurement/batch}" >
-    <p>Generate 1000 testing measurements</p>
-    <input type="submit" value="Create"/>
-</form>
+            <form th:method="POST" th:action="@{/client/measurement/batch}" >
+                <h1>Generate 1000 testing measurements</h1>
+                <div class="sbmt">
+                    <input type="submit" value="Generate"/>
+                </div>
+            </form>
 
 
 
 
 
-<form th:method="GET" th:action="@{/client/measurement/show}" >
-    <p>Show all measurements</p>
-    <input type="submit" value="Show"/>
-</form>
+            <form th:method="GET" th:action="@{/client/measurement/show}" >
+                <p>Show all measurements</p>
+                <div class="sbmt">
+                    <input type="submit" value="Show"/>
+                </div>
+            </form>
 
-<form th:method="GET" th:action="@{/client/measurement/rainydays}" >
-    <p>Show the number of rainy days</p>
-    <input type="submit" value="Show"/>
-</form>
+            <form th:method="GET" th:action="@{/client/measurement/rainydays}" >
+                <p>Show the number of rainy days</p>
+                <div class="sbmt">
+                    <input type="submit" value="Show"/>
+                </div>
+            </form>
 
-<form th:method="Post" th:action="@{/client/clear}" >
-    <p>Clear Data</p>
-    <input type="submit" value="Clear"/>
-</form>
+            <form th:method="Post" th:action="@{/client/clear}" >
+                <p>Clear Data</p>
+                <div class="sbmt">
+                    <input type="submit" value="Clear"/>
+                </div>
+            </form>
 
+        </div>
+    </div>
 </body>
 </html>

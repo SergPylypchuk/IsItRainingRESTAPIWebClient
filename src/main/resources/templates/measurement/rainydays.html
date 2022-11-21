@@ -3,8 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Rainy days</title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<div th:text="${rainyDays}">Rainy days</div>
+    <div class="common">
+        <div class="content">
+            <h1>Rainy days:</h1>
+            <div class="rd" th:text="${rainyDays}">Rainy days</div>
+        </div>
+    </div>
 </body>
 </html>

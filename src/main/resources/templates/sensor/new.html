@@ -1,19 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>New sensor registration</title>
+    <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<p> New sensor registration</p>
+<div class="common">
+    <div class="content">
+        <h1> New sensor registration</h1>
 
-<form th:method="POST" th:action="@{/client/sensor}" th:object="${sensor}">
-    <label for="name">Enter the name of the sensor</label>
-    <input type="text" th:field="*{name}" id="name"/>
-    <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</div>
-    <br/>
-    <input type="submit" value="Create"/>
-</form>
-
+        <form th:method="POST" th:action="@{/client/sensor}" th:object="${sensor}">
+            <label for="name">Enter the name of the sensor</label>
+            <br/>
+            <input type="text" th:field="*{name}" id="name"/>
+            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</div>
+            <br/>
+            <div class="sbmt">
+            <input type="submit" value="Create"/>
+            </div>
+        </form>
+    </div>
+</div>
 </body>
 </html>

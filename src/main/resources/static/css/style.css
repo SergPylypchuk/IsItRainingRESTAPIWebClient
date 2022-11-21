@@ -1,0 +1,91 @@
+body{
+    background-color: #3F3F3F;
+}
+.common {
+    width: 30em;
+    margin: 5% auto;
+    background-color: #2F2F2F;
+    border-radius: 0.5em;
+}
+.content {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+h1 {
+    padding-top: 4%;
+    font-family: Calibri;
+    font-weight: lighter;
+    text-align: center;
+    color: beige;
+}
+
+p, label, th, td {
+    font-family: Calibri;
+    margin: 5% 1% 0 0;
+    font-size: 1em;
+    font-weight: lighter;
+    text-align: center;
+    color: beige;
+}
+th {
+    text-decoration-line: underline;
+}
+
+.p_left {
+    font-family: Calibri;
+    margin: 9% 3% 0 0;
+    font-size: 1em;
+    font-weight: lighter;
+    color: beige;
+    text-align: left;
+}
+.iir {
+    margin-bottom: 1%;
+}
+
+.rd {
+    padding: 4% 0;
+    font-family: Calibri;
+    font-weight: lighter;
+    font-size: 2em;
+    text-align: center;
+    color: beige;
+
+}
+
+input[type=text] {
+    margin: 2% 0;
+    width: 13.5em;
+    height: 1.5em;
+    background-color: beige;
+    color: #3F3F3F;
+    border-radius: 0.5em;
+}
+input[type=submit] {
+    width: 10em;
+    height: 3em;
+    background-color: beige;
+    color: #3F3F3F;
+    margin: 7% auto;
+    border-radius: 0.5em;
+}
+select {
+    margin-top: 2%;
+    width: 10em;
+    height: 1.5em;
+    background-color: beige;
+    color: #3F3F3F;
+    border-radius: 0.5em;
+}
+
+input[type=radio] {
+    accent-color: #3F3F3F;
+    color: #3F3F3F;
+}
+
+.sbmt {
+    margin-top: 5%;
+    display:flex;
+    justify-content: center;
+}
