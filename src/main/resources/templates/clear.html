@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Sensor batch generation</title>
+    <title>Clear all data</title>
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-
 <div class="main">
     <div class="menu">
         <hr/>
@@ -67,24 +66,21 @@
             </div>
         </form>
         <hr/>
-
     </div>
 
     <div class="common">
-        <div class="content">
-            <form th:method="POST" th:action="@{/client/sensor/batch}" >
+            <div class="content">
 
+                <h1>Clear all data</h1>
 
-                <h1>Generate 1000 testing sensors</h1>
+                <form th:method="Post" th:action="@{/client/clear}" >
+                  <div class="sbmt">
+                    <input type="submit" value="Clear"/>
+                  </div>
+                </form>
 
-
-                <div class="sbmt">
-                    <input type="submit" value="Generate"/>
-                </div>
-            </form>
-
-            <hr/>
-        </div>
+                <hr/>
+            </div>
     </div>
 </div>
 </body>

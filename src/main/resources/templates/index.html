@@ -6,6 +6,98 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<h1>Is it raining</h1>
+
+<div class="main">
+    <div class="menu">
+        <hr/>
+        <p>NEW</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/sensor/new}" >
+            <div class="sbmt">
+                <input type="submit" value="Sensor"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/new}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurement"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>OR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/sensor/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 sensors"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 measurements"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>SHOW</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/measurement/show}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurements"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/rainydays}" >
+            <div class="sbmt">
+                <input type="submit" value="Rainy days counter"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>CLEAR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/clear}" >
+            <div class="sbmt">
+                <input type="submit" value="All data"/>
+            </div>
+        </form>
+        <hr/>
+
+    </div>
+
+    <div class="common">
+        <div class="content">
+
+
+            <h1>Is it raining?</h1>
+            <p>This client created for testing REST API App 'Is it raining?' that collects data from rain-sensors</p>
+
+            <p>Manual mode:</p>
+            <p>Push 'New -> Sensor' add unique name and register one or several sensors.
+            Push 'New measurement', enter some data and choose your sensor.
+            You can add many measurements for every sensor.
+            Push 'Show -> Measurement' to see all measurements.
+            Push 'Show -> Rainy days' to see quantity of rainy days.
+            Push 'Clear -> All data' to delete all sensors and measurements.</p>
+
+            <p>Batch mode:</p>
+            <p>Push 'New -> 1000 sensors' and press 'Generate'.
+                Push 'New -> 1000 measurements' and press 'Add'.
+                Random data will be generated on server and added for sensors you create previously.
+                Push 'Show Measurement' to see all measurements.
+                Push 'Show Rainy days' to see quantity of rainy days.
+                Push 'Clear -> All data' to delete all sensors and measurements.</p>
+
+
+
+            <hr/>
+        </div>
+    </div>
+</div>
 </body>
 </html>

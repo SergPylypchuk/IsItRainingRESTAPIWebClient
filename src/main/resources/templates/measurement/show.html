@@ -6,6 +6,70 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
+
+<div class="main">
+    <div class="menu">
+        <hr/>
+        <p>NEW</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/sensor/new}" >
+            <div class="sbmt">
+                <input type="submit" value="Sensor"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/new}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurement"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>OR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/sensor/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 sensors"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 measurements"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>SHOW</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/measurement/show}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurements"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/rainydays}" >
+            <div class="sbmt">
+                <input type="submit" value="Rainy days counter"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>CLEAR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/clear}" >
+            <div class="sbmt">
+                <input type="submit" value="All data"/>
+            </div>
+        </form>
+        <hr/>
+
+    </div>
+
     <div class="common">
         <div class="content">
 
@@ -29,7 +93,9 @@
 
             </table>
 
+            <hr/>
         </div>
     </div>
+</div>
 </body>
 </html>

@@ -6,20 +6,87 @@
     <link href="/css/style.css" rel="stylesheet">
 </head>
 <body>
-<div class="common">
-    <div class="content">
-        <h1> New sensor registration</h1>
+<div class="main">
+    <div class="menu">
+        <hr/>
+        <p>NEW</p>
+        <hr/>
 
-        <form th:method="POST" th:action="@{/client/sensor}" th:object="${sensor}">
-            <label for="name">Enter the name of the sensor</label>
-            <br/>
-            <input type="text" th:field="*{name}" id="name"/>
-            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</div>
-            <br/>
+        <form th:method="GET" th:action="@{/client/sensor/new}" >
             <div class="sbmt">
-            <input type="submit" value="Create"/>
+                <input type="submit" value="Sensor"/>
             </div>
         </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/new}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurement"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>OR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/sensor/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 sensors"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/batch/new}" >
+            <div class="sbmt">
+                <input type="submit" value="1000 measurements"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>SHOW</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/measurement/show}" >
+            <div class="sbmt">
+                <input type="submit" value="Measurements"/>
+            </div>
+        </form>
+
+        <form th:method="GET" th:action="@{/client/measurement/rainydays}" >
+            <div class="sbmt">
+                <input type="submit" value="Rainy days counter"/>
+            </div>
+        </form>
+
+        <hr/>
+        <p>CLEAR</p>
+        <hr/>
+
+        <form th:method="GET" th:action="@{/client/clear}" >
+            <div class="sbmt">
+                <input type="submit" value="All data"/>
+            </div>
+        </form>
+        <hr/>
+
+    </div>
+
+    <div class="common">
+        <div class="content">
+
+            <h1> New sensor registration</h1>
+
+            <form th:method="POST" th:action="@{/client/sensor}" th:object="${sensor}">
+                <label for="name">Enter the name of the sensor</label>
+                <br/>
+                <input type="text" th:field="*{name}" id="name"/>
+                <div style="color: darkgoldenrod; font-family: Calibri" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error name</div>
+                <br/>
+                <div class="sbmt">
+                <input type="submit" value="Register"/>
+                </div>
+            </form>
+
+            <hr/>
+        </div>
     </div>
 </div>
 </body>

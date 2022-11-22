@@ -36,7 +36,7 @@ public class ClientController {
         if(bindingResult.hasErrors())
             return "/sensor/new";
         service.newSensorRegistration(sensor.getName());
-        return "sensor/new";
+        return "redirect:/client/sensor/new";
     }
     @GetMapping("/measurement/new")
     public String addMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model, @ModelAttribute("measurement") Measurement measurement, BindingResult bindingResult) {
@@ -65,7 +65,7 @@ public class ClientController {
     public String batchSensorCreate() {
         service.clearAllData();
         service.batchSensorRegistration();
-        return "measurement/batch";
+        return "redirect:/client/measurement/batch/new";
     }
 
     @GetMapping("/measurement/batch/new")
@@ -75,7 +75,7 @@ public class ClientController {
     @PostMapping("/measurement/batch")
     public String batchMeasurementCreate() {
         service.batchMeasurementSending();
-        return "measurement/batch";
+        return "redirect:/client/measurement/show";
     }
 
     @GetMapping("/measurement/show")
@@ -91,6 +91,10 @@ public class ClientController {
         return "measurement/rainydays";
     }
 
+    @GetMapping("/clear")
+    public String clearDataPage() {
+        return "clear";
+    }
     @PostMapping("/clear")
     public String clearData() {
         service.clearAllData();
