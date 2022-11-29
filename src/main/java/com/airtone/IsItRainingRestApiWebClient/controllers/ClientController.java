@@ -25,6 +25,10 @@ public class ClientController {
         this.dataSending = dataSending;
     }
 
+    @GetMapping()
+    public String homePage() {
+        return "index";
+    }
     @GetMapping("/sensor/new")
     public String newSensorReg(@ModelAttribute ("sensor") Sensor sensor) {
         return "sensor/new";
@@ -98,7 +102,7 @@ public class ClientController {
     @PostMapping("/clear")
     public String clearData() {
         service.clearAllData();
-        return "index";
+        return "redirect:/client";
     }
 
 
