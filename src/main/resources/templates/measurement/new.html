@@ -37,18 +37,18 @@
         </form>
 
         <hr/>
-        <p>OR</p>
+        <p>BATCH</p>
         <hr/>
 
         <form th:method="GET" th:action="@{/client/sensor/batch/new}" >
             <div class="sbmt">
-                <input type="submit" value="1000 sensors"/>
+                <input type="submit" value="Sensors"/>
             </div>
         </form>
 
         <form th:method="GET" th:action="@{/client/measurement/batch/new}" >
             <div class="sbmt">
-                <input type="submit" value="1000 measurements"/>
+                <input type="submit" value="Measurements"/>
             </div>
         </form>
 
@@ -91,7 +91,7 @@
             <form th:method="POST" th:action="@{/client/measurement}" th:object="${measurement}">
             <!--    <label for="value">Temperature</label>-->
             <!--    <input type="text" th:field="*{value}" id="value"/>-->
-            <!--    <div style="color: darkred" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
+            <!--    <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
             <!--    <br/>-->
 
                 <label for="value">Temperature:</label>
@@ -104,7 +104,7 @@
 
             <!--    <label for="raining">Raining</label>-->
             <!--    <input type="text" th:field="*{raining}" id="raining"/>-->
-            <!--    <div color="red" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
+            <!--    <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
             <!--    <br/>-->
 
                 <div class="p_left">
@@ -114,6 +114,7 @@
 
                 <label for="rainingFalse">No</label>
                 <input type="radio" th:field="*{raining}" id="rainingFalse" name="raining" value="false"/>
+<!--                <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
                 </div>
 
                 <br/>
@@ -124,10 +125,16 @@
                     <option th:each="sensor : ${allSensors}" th:value="${sensor.getName()}"
                             th:text="${sensor.getName()}"></option>
                 </select>
+                <div class="error-message" th:if="${#fields.hasErrors('sensor')}" th:errors="*{sensor}">Error name</div>
+
+
                 <br/>
+
                 <div class="sbmt">
                     <input type="submit" value="Add"/>
                 </div>
+
+
             </form>
 
             <hr/>

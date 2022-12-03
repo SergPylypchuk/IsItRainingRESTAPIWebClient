@@ -1,7 +1,6 @@
 package com.airtone.IsItRainingRestApiWebClient.controllers;
 
-import com.airtone.IsItRainingRestApiWebClient.DataSending;
-import com.airtone.IsItRainingRestApiWebClient.Service;
+import com.airtone.IsItRainingRestApiWebClient.service.Service;
 import com.airtone.IsItRainingRestApiWebClient.model.Measurement;
 import com.airtone.IsItRainingRestApiWebClient.model.Sensor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,60 +10,82 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/client")
 public class ClientController {
     private final Service service;
-    private final DataSending dataSending;
 
     @Autowired
-    public ClientController(Service service, DataSending dataSending) {
+    public ClientController(Service service) {
         this.service = service;
-        this.dataSending = dataSending;
     }
 
+
+    //////////////////////////////////////// Home Page ////////////////////////////////////////////////
     @GetMapping()
     public String homePage() {
         return "index";
     }
+
+
+    /////////////////////////////// Manual sensor registration ////////////////////////////////////////
     @GetMapping("/sensor/new")
     public String newSensorReg(@ModelAttribute ("sensor") Sensor sensor) {
         return "sensor/new";
     }
+
     @PostMapping("/sensor")
     public String sensorCreate(@ModelAttribute ("sensor") @Valid Sensor sensor, BindingResult bindingResult) {
-        if(dataSending.sensorCheck(sensor.getName()) == true)
-            bindingResult.rejectValue("name", "","A sensor with this name already registered");
+        if(service.sensorCheck(sensor.getName()) == true)
+            bindingResult.rejectValue("name", "",
+                    "A sensor with this name already registered");
         if(bindingResult.hasErrors())
             return "/sensor/new";
         service.newSensorRegistration(sensor.getName());
         return "redirect:/client/sensor/new";
     }
+
+
+    ////////////////////////////// Manual adding of a measurement ////////////////////////////////////
     @GetMapping("/measurement/new")
-    public String addMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model, @ModelAttribute("measurement") Measurement measurement, BindingResult bindingResult) {
+    public String addMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model,
+                                 @ModelAttribute("measurement") Measurement measurement, BindingResult bindingResult) {
         model.addAttribute("allSensors", service.showAllSensors());
         model.addAttribute("values", service.values());
         return "measurement/new";
     }
+
     @PostMapping("/measurement")
-    public String createMeasurement(@ModelAttribute("sensor") Sensor sensor, @ModelAttribute("measurement") @Valid Measurement measurement, BindingResult bindingResult) {
+    public String createMeasurement(@ModelAttribute("sensor") Sensor sensor, Model model,
+                                    @ModelAttribute("measurement") @Valid Measurement measurement,
+                                    BindingResult bindingResult) {
 
-        // Checking the sensor for manual data entry
-//        if(dataSending.sensorCheck(measurement.getSensor()) == false)
-//            bindingResult.rejectValue("sensor", "","A sensor with this name is not registered");
+        // Checking the sensor for manual data typing
+//        if(service.sensorCheck(measurement.getSensor()) == false)
+//            bindingResult.rejectValue("sensor", "","You should set all fields");
 
-        if(bindingResult.hasErrors())
+        if(sensor.getName() == null) {
+            System.out.println(measurement.getValue() + '\n' + measurement.getRaining() + '\n' + sensor.getName());
+            bindingResult.rejectValue("sensor", "", "This field should not be empty");
+        }
+
+        if(bindingResult.hasErrors()) {
+            model.addAttribute("allSensors", service.showAllSensors());
+            model.addAttribute("values", service.values());
             return "measurement/new";
+        }
+
         service.newMeasurementAdding(measurement.getValue(), measurement.getRaining(), sensor.getName());
         return "redirect:/client/measurement/new";
     }
 
+    ////////////////////////////// Batch mode - registration of a batch of sensors ///////////////////////////////////
     @GetMapping("/sensor/batch/new")
     public String batchSensorGen() {
         return "sensor/batch";
     }
+
     @PostMapping("/sensor/batch")
     public String batchSensorCreate() {
         service.clearAllData();
@@ -72,6 +93,7 @@ public class ClientController {
         return "redirect:/client/measurement/batch/new";
     }
 
+    ////////////////////////////// Batch mode - adding of a batch of measurements ////////////////////////////////////
     @GetMapping("/measurement/batch/new")
     public String batchMeasurementGen() {
         return "measurement/batch";
@@ -82,6 +104,7 @@ public class ClientController {
         return "redirect:/client/measurement/show";
     }
 
+    //////////////////////////////////////////// Show all measurements ///////////////////////////////////////////////
     @GetMapping("/measurement/show")
     public String ShowAllMeasurements(Model model) {
         model.addAttribute("allMeasurements", service.showAllMeasurements());
@@ -89,12 +112,14 @@ public class ClientController {
         return "measurement/show";
     }
 
+    /////////////////////////////////////////// Show rainy days counter //////////////////////////////////////////////
     @GetMapping("/measurement/rainydays")
     public String rainyDaysCounter(Model model) {
         model.addAttribute("rainyDays", service.showAllRainyDays());
         return "measurement/rainydays";
     }
 
+    ///////////////////////////////////////////////// Clear all data /////////////////////////////////////////////////
     @GetMapping("/clear")
     public String clearDataPage() {
         return "clear";
@@ -104,7 +129,4 @@ public class ClientController {
         service.clearAllData();
         return "redirect:/client";
     }
-
-
-
 }
