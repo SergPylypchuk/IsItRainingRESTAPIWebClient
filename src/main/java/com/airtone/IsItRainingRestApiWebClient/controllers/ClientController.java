@@ -61,13 +61,12 @@ public class ClientController {
                                     @ModelAttribute("measurement") @Valid Measurement measurement,
                                     BindingResult bindingResult) {
 
-        // Checking the sensor for manual data typing
+        // Checking the sensor's name for manual data typing in the text field
 //        if(service.sensorCheck(measurement.getSensor()) == false)
 //            bindingResult.rejectValue("sensor", "","You should set all fields");
 
         if(sensor.getName() == null) {
-            System.out.println(measurement.getValue() + '\n' + measurement.getRaining() + '\n' + sensor.getName());
-            bindingResult.rejectValue("sensor", "", "This field should not be empty");
+            bindingResult.rejectValue("sensor", "", "This field should not be empty. Register the sensor first");
         }
 
         if(bindingResult.hasErrors()) {

@@ -91,25 +91,12 @@ public class Service {
     /////////////////////////// Show All Measurements /////////////////////////////
 
     public List<Measurement> showAllMeasurements() {
-//        String showAllMeasurementsUrl = "http://localhost:8080/measurements";
-//        AllMeasurements showAllMeasurementsResponse = restTemplate.getForObject(showAllMeasurementsUrl, AllMeasurements.class);
-//        for(Measurement m : showAllMeasurementsResponse.getMeasurement()) {
-//            System.out.println("measurement: raining: " + m.getRaining()
-//                    + " temperature: " + m.getValue() + " sensor: " + m.getSensor());
-//        }
-//        return showAllMeasurementsResponse.getMeasurement();
         return getRequest.showAllMeasurements();
     }
 
     /////////////////////////// Show All Sensors /////////////////////////////
 
     public List<Sensor> showAllSensors() {
-//        String showAllSensorsUrl = "http://localhost:8080/sensors";
-//        AllSensors showAllSensorsResponse = restTemplate.getForObject(showAllSensorsUrl, AllSensors.class);
-//        for(Sensor m : showAllSensorsResponse.getSensor()) {
-//            System.out.println("measurement: name: " + m);
-//        }
-//        return showAllSensorsResponse.getSensor();
         return getRequest.showAllSensors();
     }
 
@@ -117,9 +104,6 @@ public class Service {
     /////////////////////////// Show All Rainy Days ///////////////////////////////
 
     public String showAllRainyDays() {
-//        String allRainyDaysUrl = "http://localhost:8080/measurements/rainyDaysCount";
-//        String allRainyDaysResponse = restTemplate.getForObject(allRainyDaysUrl,String.class);
-//        return allRainyDaysResponse;
         return getRequest.showAllRainyDays();
     }
 
@@ -127,25 +111,24 @@ public class Service {
     ///////////////////////////  ClearAllData /////////////////////////////////////
 
     public void clearAllData() {
-//        String clearAllDataUrl = "http://localhost:8080/sensors/clear";
-//        restTemplate.delete(clearAllDataUrl, String.class);
         deleteRequest.clearAllData();
     }
+
 
     ///////////////////////////  Temperature values ///////////////////////////////
 
     public List<String> values() {
         List<String> values = new ArrayList<>();
         for(int i = tMax; i >= tMin; i--) {
-
             values.add(Integer.toString(i));
         }
         return values;
     }
 
+
     ///////////////////////  Checking a name of a sensor ///////////////////////////
 
     public boolean sensorCheck(String uncheckedSensor) {
-        return postRequest.sensorCheck(uncheckedSensor);
+        return getRequest.sensorCheck(uncheckedSensor);
     }
 }

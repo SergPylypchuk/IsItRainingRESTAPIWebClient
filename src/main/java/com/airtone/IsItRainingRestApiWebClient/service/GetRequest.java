@@ -4,6 +4,7 @@ import com.airtone.IsItRainingRestApiWebClient.model.AllMeasurements;
 import com.airtone.IsItRainingRestApiWebClient.model.AllSensors;
 import com.airtone.IsItRainingRestApiWebClient.model.Measurement;
 import com.airtone.IsItRainingRestApiWebClient.model.Sensor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
@@ -11,29 +12,43 @@ import java.util.List;
 
 @Component
 public class GetRequest {
+    @Value("${showAllMeasurementsUrl}")
+    private String showAllMeasurementsUrl;
+
+    @Value("${showAllSensorsUrl}")
+    private String showAllSensorsUrl;
+
+    @Value("${allRainyDaysUrl}")
+    private String allRainyDaysUrl;
+
+    @Value("${sensorCheckUrl}")
+    private String sensorCheckUrl;
+
     RestTemplate restTemplate = new RestTemplate();
 
 
     /////////////////////////// Show All Measurements /////////////////////////////
 
     public List<Measurement> showAllMeasurements() {
-        String showAllMeasurementsUrl = "http://localhost:8080/measurements";
         AllMeasurements showAllMeasurementsResponse = restTemplate.getForObject(showAllMeasurementsUrl, AllMeasurements.class);
-        for(Measurement m : showAllMeasurementsResponse.getMeasurement()) {
-            System.out.println("measurement: raining: " + m.getRaining()
-                    + " temperature: " + m.getValue() + " sensor: " + m.getSensor());
-        }
+        assert showAllMeasurementsResponse != null;
+    /////////////////////////////////// testing ///////////////////////////////////
+//        for(Measurement m : showAllMeasurementsResponse.getMeasurement()) {
+//            System.out.println("measurement: raining: " + m.getRaining()
+//                    + " temperature: " + m.getValue() + " sensor: " + m.getSensor());
+//        }
         return showAllMeasurementsResponse.getMeasurement();
     }
 
     /////////////////////////// Show All Sensors /////////////////////////////
 
     public List<Sensor> showAllSensors() {
-        String showAllSensorsUrl = "http://localhost:8080/sensors";
         AllSensors showAllSensorsResponse = restTemplate.getForObject(showAllSensorsUrl, AllSensors.class);
-        for(Sensor m : showAllSensorsResponse.getSensor()) {
-            System.out.println("measurement: name: " + m);
-        }
+        assert showAllSensorsResponse != null;
+        /////////////////////////////////// testing ///////////////////////////////////
+//        for(Sensor m : showAllSensorsResponse.getSensor()) {
+//            System.out.println("measurement: name: " + m);
+//        }
         return showAllSensorsResponse.getSensor();
     }
 
@@ -41,8 +56,10 @@ public class GetRequest {
     /////////////////////////// Show All Rainy Days ///////////////////////////////
 
     public String showAllRainyDays() {
-        String allRainyDaysUrl = "http://localhost:8080/measurements/rainyDaysCount";
-        String allRainyDaysResponse = restTemplate.getForObject(allRainyDaysUrl,String.class);
-        return allRainyDaysResponse;
+        return restTemplate.getForObject(allRainyDaysUrl, String.class);
+    }
+
+    public boolean sensorCheck(String uncheckedSensor) {
+        return Boolean.parseBoolean(restTemplate.getForObject(sensorCheckUrl + uncheckedSensor, String.class));
     }
 }

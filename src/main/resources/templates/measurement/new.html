@@ -8,6 +8,8 @@
 <body>
 
 <div class="main">
+
+<!--    Menu-->
     <div class="menu">
 
         <hr/>
@@ -81,6 +83,8 @@
 
     </div>
 
+
+    <!--    Content-->
     <div class="common">
         <div class="content">
 
@@ -89,11 +93,13 @@
 
 
             <form th:method="POST" th:action="@{/client/measurement}" th:object="${measurement}">
+            <!--                Text field 'Temperature'-->
             <!--    <label for="value">Temperature</label>-->
             <!--    <input type="text" th:field="*{value}" id="value"/>-->
             <!--    <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('value')}" th:errors="*{value}">Error name</div>-->
             <!--    <br/>-->
 
+            <!--                Select field 'Temperature'-->
                 <label for="value">Temperature:</label>
                 <br/>
                 <select th:object="${measurement}" th:field="*{value}" id="value">
@@ -102,11 +108,13 @@
                 </select>
 
 
+            <!--                Text field 'Raining'-->
             <!--    <label for="raining">Raining</label>-->
             <!--    <input type="text" th:field="*{raining}" id="raining"/>-->
             <!--    <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
             <!--    <br/>-->
 
+            <!--                Radio field 'Raining'-->
                 <div class="p_left">
                     <div class="iir">Is it raining?</div>
                 <label for="rainingTrue">Yes</label>
@@ -114,7 +122,6 @@
 
                 <label for="rainingFalse">No</label>
                 <input type="radio" th:field="*{raining}" id="rainingFalse" name="raining" value="false"/>
-<!--                <div style="color: darkgoldenrod" th:if="${#fields.hasErrors('raining')}" th:errors="*{raining}">Error name</div>-->
                 </div>
 
                 <br/>
