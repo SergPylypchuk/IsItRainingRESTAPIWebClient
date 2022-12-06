@@ -54,7 +54,19 @@ div {
     font-family: var(--main-font-family);
 }
 
-p, label, th, td, code {
+h2 {
+    font-family: var(--main-font-family);
+    margin-left: 1em;
+    margin-top: 2em;
+    margin-bottom: 0;
+    font-size: 1em;
+    font-weight: lighter;
+    text-align: left;
+    color: var(--main-color);
+    text-decoration-line: underline;
+}
+
+p, label, th, td {
     font-family: var(--main-font-family);
     margin: 5% 1% 0 0;
     font-size: 1em;
@@ -63,10 +75,31 @@ p, label, th, td, code {
     color: var(--main-color);
 }
 
+pre code {
+    font-family: var(--main-font-family);
+    /*margin: 1em 0 0 0;*/
+    font-size: 1em;
+    font-weight: lighter;
+    text-align: left;
+    line-height: 2;
+    color: var(--main-color);
+
+}
+.code {
+    background-color: var(--grey-bg);
+    padding: 0.1em 1em;
+    border-radius: 0.5em;
+    text-align: left;
+}
+
+.incode {
+    text-align: left;
+}
+
 .howto {
     text-align: left;
-    margin-left: 2em;
-    margin-right: 2em;
+    margin: 0 2em;
+    line-height: 1;
 }
 
 th {
