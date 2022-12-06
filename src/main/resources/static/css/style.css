@@ -54,7 +54,7 @@ div {
     font-family: var(--main-font-family);
 }
 
-p, label, th, td {
+p, label, th, td, code {
     font-family: var(--main-font-family);
     margin: 5% 1% 0 0;
     font-size: 1em;
@@ -62,6 +62,13 @@ p, label, th, td {
     text-align: center;
     color: var(--main-color);
 }
+
+.howto {
+    text-align: left;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
 th {
     text-decoration-line: underline;
 }
